@@ -1,10 +1,10 @@
 var Bucket = require('./bucket_list/bucket.js');
 var Country = require('./bucket_list/bucket.js');
 var BucketView = require('./views/bucket_view.js');
+var bucket = new Bucket();
+var bucketView = new BucketView(bucket);
 
 var app = function() {
-  var bucket = new Bucket();
-  var bucketView = new BucketView(bucket);
 
   var remoteUrl = "https://restcountries.eu/rest/v1/all";
   var url = "http://localhost:3000/countries";
@@ -26,7 +26,7 @@ var requestComplete = function(){
      if(this.status !==200) return;
      var jsonString = this.responseText;
      var countries = JSON.parse(jsonString);
-     // populateList(countries); 
+     bucketView.populateSelectList(countries); 
      console.log(countries[0]);    
 }
 
@@ -35,7 +35,7 @@ var requestComplete = function(){
          var countries = JSON.parse(this.responseText);
          console.log(countries);
          for(country of countries) {
-           Bucket.addCountry(new Country(country));
+           bucket.addCountry(new Country(country));
          }
          bucketView.bindEvents();
          bucketView.render();

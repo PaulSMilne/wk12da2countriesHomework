@@ -47,10 +47,10 @@
 	var Bucket = __webpack_require__(1);
 	var Country = __webpack_require__(1);
 	var BucketView = __webpack_require__(2);
+	var bucket = new Bucket();
+	var bucketView = new BucketView(bucket);
 	
 	var app = function() {
-	  var bucket = new Bucket();
-	  var bucketView = new BucketView(bucket);
 	
 	  var remoteUrl = "https://restcountries.eu/rest/v1/all";
 	  var url = "http://localhost:3000/countries";
@@ -72,7 +72,7 @@
 	     if(this.status !==200) return;
 	     var jsonString = this.responseText;
 	     var countries = JSON.parse(jsonString);
-	     // populateList(countries); 
+	     bucketView.populateSelectList(countries); 
 	     console.log(countries[0]);    
 	}
 	
@@ -81,7 +81,7 @@
 	         var countries = JSON.parse(this.responseText);
 	         console.log(countries);
 	         for(country of countries) {
-	           Bucket.addCountry(new Country(country));
+	           bucket.addCountry(new Country(country));
 	         }
 	         bucketView.bindEvents();
 	         bucketView.render();
