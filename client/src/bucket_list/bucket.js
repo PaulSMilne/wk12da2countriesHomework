@@ -1,10 +1,10 @@
 var Bucket = function() {
-  this.countries = [];
+  this.bucketList = [];
 };
 
 Bucket.prototype = {
   addCountry: function(country) {
-    this.countries.push(country);
+    this.bucketList.push(country);
   }
 };
 module.exports = Bucket;
