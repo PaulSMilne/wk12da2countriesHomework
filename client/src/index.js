@@ -38,7 +38,7 @@ var requestComplete = function(){
            bucket.addCountry(new Country(country));
          }
          bucketView.bindEvents();
-         bucketView.render();
+         bucketView.displayBucketList(bucket.bucketList);
     }
 
   }

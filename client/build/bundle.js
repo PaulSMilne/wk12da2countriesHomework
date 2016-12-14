@@ -84,7 +84,7 @@
 	           bucket.addCountry(new Country(country));
 	         }
 	         bucketView.bindEvents();
-	         bucketView.render();
+	         bucketView.displayBucketList(bucket.bucketList);
 	    }
 	
 	  }
@@ -154,7 +154,15 @@
 	    request.send(JSON.stringify(country));
 	  },
 	
-	  render: function(){
+	  displayBucketList: function(countries){
+	    var list = document.getElementById('bucket_list');
+	    var counter = 0;
+	    for (country of countries){
+	      var listItem = document.createElement('li');
+	      listItem.innerText = country[counter].name;
+	      list.appendChild(listItem);
+	      counter ++;
+	    }
 	    console.log("rendering");
 	  }
 	
