@@ -11,9 +11,10 @@ window.onload = function() {
   request.open("GET", url);
   request.onload = function(){
      if(request.status == 200){
-          var desirableCountries = JSON.parse(request.responseText);
-          for(country of desirableCountries) {
-          Bucket.addCountry(new Country(country));
+          var countries = JSON.parse(request.responseText);
+          console.log(countries);
+          for(country of countries) {
+            Bucket.addCountry(new Country(country));
           }
           bucketView.bindEvents();
           bucketView.render();

@@ -11,9 +11,9 @@ app.get('/', function (req, res) {
 });
 
 app.get('/countries', function(req, res){
-     var url = 'mongodb://localhost:27017/bucket_list';
+     var url = 'mongodb://localhost:27017/countries';
      MongoClient.connect(url, function(err, db){
-          var collection = db.collection('countries');
+          var collection = db.collection('allcountries');
           collection.find({}).toArray(function(err, docs){
                res.json(docs);
                db.close();
@@ -22,9 +22,9 @@ app.get('/countries', function(req, res){
 })
 
 app.post('/countries', function(req, res){
-     var url = 'mongodb://localhost:27017/bucket_list';
+     var url = 'mongodb://localhost:27017/countries';
      MongoClient.connect(url, function(err, db){
-          var collection = db.collection('countries');
+          var collection = db.collection('allcountries');
           collection.insert(
                {
                     "name": req.body.name,
